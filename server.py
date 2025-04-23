@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import requests
 
 app = Flask(__name__)
+
 IB_GATEWAY = "https://clientportalwebapi.interactivebrokers.com"
 
 @app.route("/v1/api/iserver/auth/status", methods=["GET"])

@@ -5,14 +5,14 @@ app = Flask(__name__)
 
 IB_GATEWAY = "https://clientportalwebapi.interactivebrokers.com"
 
-@app.route("/v1/api/iserver/auth/status", methods=["GET"])
+@app.route("/v1/iserver/auth/status", methods=["GET"])
 def status():
-    r = requests.get(f"{IB_GATEWAY}/v1/api/iserver/auth/status", verify=False)
+    r = requests.get(f"{IB_GATEWAY}/v1/iserver/auth/status", verify=False)
     return jsonify(r.json()), r.status_code
 
-@app.route("/v1/api/iserver/reauthenticate", methods=["POST"])
+@app.route("/v1/iserver/reauthenticate", methods=["POST"])
 def reauth():
-    r = requests.post(f"{IB_GATEWAY}/v1/api/iserver/reauthenticate", verify=False)
+    r = requests.post(f"{IB_GATEWAY}/v1/iserver/reauthenticate", verify=False)
     return jsonify(r.json()), r.status_code
 
 @app.route("/v1/iserver/accounts", methods=["GET"])
@@ -20,9 +20,9 @@ def accounts():
     r = requests.get(f"{IB_GATEWAY}/v1/iserver/accounts", verify=False)
     return jsonify(r.json()), r.status_code
 
-@app.route("/v1/api/portfolio/<account_id>/summary", methods=["GET"])
+@app.route("/v1/portfolio/<account_id>/summary", methods=["GET"])
 def summary(account_id):
-    r = requests.get(f"{IB_GATEWAY}/v1/api/portfolio/{account_id}/summary", verify=False)
+    r = requests.get(f"{IB_GATEWAY}/v1/portfolio/{account_id}/summary", verify=False)
     return jsonify(r.json()), r.status_code
 
 @app.route("/v1/iserver/account/<account_id>/orders", methods=["POST"])

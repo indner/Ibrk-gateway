@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 import requests
 
 app = Flask(__name__)
-IB_GATEWAY = "https://clientportalwebapi.interactivebrokers.com"
+
+IB_GATEWAY = "https://ibkr-gateway-production.up.railway.app"
 
 @app.route("/v1/api/iserver/auth/status", methods=["GET"])
 def status():
@@ -24,15 +25,15 @@ def summary(account_id):
     r = requests.get(f"{IB_GATEWAY}/v1/api/portfolio/{account_id}/summary", verify=False)
     return jsonify(r.json()), r.status_code
 
-@app.route("/v1/api/iserver/account/<account_id>/orders", methods=["POST"])
+@app.route("/v1/api/iserver/accounts/<account_id>/orders", methods=["POST"])
 def place_order(account_id):
     data = request.json
     r = requests.post(
-        f"{IB_GATEWAY}/v1/api/iserver/account/{account_id}/orders",
+        f"{IB_GATEWAY}/v1/api/iserver/accounts/{account_id}/orders",
         json=data,
         verify=False
     )
     return jsonify(r.json()), r.status_code
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run(debug=False, host="0.0.0.0", port=8080)

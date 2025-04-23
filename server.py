@@ -10,11 +10,6 @@ def status():
     r = requests.get(f"{IB_GATEWAY}/v1/api/iserver/auth/status", verify=False)
     return jsonify(r.json()), r.status_code
 
-@app.route("/v1/api/iserver/auth/ssokey", methods=["GET"])
-def ssokey():
-    r = requests.get(f"{IB_GATEWAY}/v1/api/iserver/auth/ssokey", verify=False)
-    return jsonify(r.json()), r.status_code
-
 @app.route("/v1/api/iserver/reauthenticate", methods=["POST"])
 def reauth():
     r = requests.post(f"{IB_GATEWAY}/v1/api/iserver/reauthenticate", verify=False)
@@ -35,6 +30,3 @@ def place_order(account_id):
     data = request.json
     r = requests.post(f"{IB_GATEWAY}/v1/api/iserver/account/{account_id}/orders", json=data, verify=False)
     return jsonify(r.json()), r.status_code
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)

@@ -30,3 +30,5 @@ def place_order(account_id):
     data = request.json
     r = requests.post(f"{IB_GATEWAY}/v1/iserver/account/{account_id}/orders", json=data, verify=False)
     return jsonify(r.json()), r.status_code
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)

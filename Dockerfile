@@ -1,7 +1,7 @@
 FROM openjdk:11
 
 RUN apt-get update && \
-    apt-get install -y unzip wget && \
+    apt-get install -y unzip wget curl && \
     mkdir /ibkr && \
     cd /ibkr && \
     wget https://github.com/InteractiveBrokers/cpwebapi/releases/download/v1.0.0/CPWebAPI_Gateway_Installer_linux-x64.zip && \

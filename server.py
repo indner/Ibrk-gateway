@@ -22,3 +22,11 @@ def place_order(account_id):
 
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0", port=8080)
+
+@app.route('/v1/api/iserver/accounts', methods=['GET'])
+def get_accounts():
+    return jsonify([{"accountId": "U123456"}])  # Beispiel-Dummy-Daten
+
+@app.route('/v1/api/portfolio/<account_id>/ledger', methods=['GET'])
+def get_ledger(account_id):
+    return jsonify({"totalcashvalue": [{"amount": 10000.00}]})  # Beispielwert

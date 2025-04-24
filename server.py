@@ -24,7 +24,7 @@ def reauth():
 # === Konten abfragen ===
 @app.route("/v1/api/portfolio/accounts", methods=["GET"])
 def accounts():
-    r = requests.get(f"{IBKR_BASE}/v1/api/portfolio/accounts", verify=VERIFY_SSL)
+    r = requests.get(f"http://localhost:5000/v1/api/portfolio/accounts", verify=False)
     return jsonify(r.json()), r.status_code
 
 # === Ledger (Kontostand etc.) abfragen ===
